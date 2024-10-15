@@ -407,60 +407,70 @@ MonoBehaviour:
     tPosition: {x: -4, y: 0, z: 0}
     tMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 917785647}
+    tRotation: {x: 0, y: 0, z: 0}
   - tColor: {r: 0.40016773, g: 0.17254901, b: 0.5294118, a: 1}
     tRenderer: {fileID: 79113086}
     tMeshFilter: {fileID: 79113085}
     tPosition: {x: -2, y: 0, z: 0}
     tMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 79113084}
+    tRotation: {x: 30, y: 0, z: 0}
   - tColor: {r: 0.5294118, g: 0.17254901, b: 0.31276464, a: 1}
     tRenderer: {fileID: 1782025399}
     tMeshFilter: {fileID: 1782025398}
     tPosition: {x: 0, y: 0, z: 0}
     tMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 1782025397}
+    tRotation: {x: 60, y: 0, z: 0}
   - tColor: {r: 0.30015132, g: 0.8962264, b: 0.5293597, a: 1}
     tRenderer: {fileID: 1917432533}
     tMeshFilter: {fileID: 1917432532}
     tPosition: {x: 2, y: 0, z: 0}
     tMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 1917432531}
+    tRotation: {x: 90, y: 0, z: 0}
   - tColor: {r: 0.12646852, g: 0.7993105, b: 0.9245283, a: 1}
     tRenderer: {fileID: 171203315}
     tMeshFilter: {fileID: 171203314}
     tPosition: {x: 4, y: 0, z: 0}
     tMesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 171203313}
+    tRotation: {x: 0, y: 30, z: 0}
   - tColor: {r: 0.5298138, g: 0.42986828, b: 0.7924528, a: 1}
     tRenderer: {fileID: 721992928}
     tMeshFilter: {fileID: 721992927}
     tPosition: {x: -4, y: 2, z: 0}
     tMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 721992926}
+    tRotation: {x: 0, y: 60, z: 0}
   - tColor: {r: 0.78291214, g: 0.27634388, b: 0.8490566, a: 1}
     tRenderer: {fileID: 806686316}
     tMeshFilter: {fileID: 806686315}
     tPosition: {x: -2, y: 2, z: 0}
     tMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 806686314}
+    tRotation: {x: 0, y: 90, z: 0}
   - tColor: {r: 0.9150943, g: 0.22877358, b: 0.4341378, a: 1}
     tRenderer: {fileID: 1910586523}
     tMeshFilter: {fileID: 1910586522}
     tPosition: {x: 0, y: 2, z: 0}
     tMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 1910586521}
+    tRotation: {x: 0, y: 0, z: 30}
   - tColor: {r: 0.7398567, g: 0.7735849, b: 0.26637593, a: 1}
     tRenderer: {fileID: 1189932597}
     tMeshFilter: {fileID: 1189932596}
     tPosition: {x: 2, y: 2, z: 0}
     tMesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 1189932595}
+    tRotation: {x: 0, y: 0, z: 60}
   - tColor: {r: 0.45022696, g: 0.754717, b: 0.3737985, a: 1}
     tRenderer: {fileID: 261259927}
     tMeshFilter: {fileID: 261259926}
     tPosition: {x: 4, y: 2, z: 0}
     tMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
     tTransform: {fileID: 261259925}
+    tRotation: {x: 0, y: 0, z: 90}
 --- !u!4 &471770351
 Transform:
   m_ObjectHideFlags: 0

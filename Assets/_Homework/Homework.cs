@@ -13,6 +13,8 @@ public class MyObject
 	public Vector3 tPosition;
 	public Mesh tMesh;
 	public Transform tTransform;
+
+	public Vector3 tRotation;
 }
 
 public class Homework : MonoBehaviour
@@ -26,8 +28,8 @@ public class Homework : MonoBehaviour
 			obj.tRenderer.material.color = obj.tColor;
 			obj.tMeshFilter.mesh = obj.tMesh;
 			obj.tTransform.position = obj.tPosition;
+			obj.tTransform.rotation = Quaternion.Euler(obj.tRotation);
 		}
-
 	}
 
 	// Update is called once per frame
