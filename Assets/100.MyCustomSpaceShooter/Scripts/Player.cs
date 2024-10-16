@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 	public float moveSpeed;
-	public float boundaryMinSize = -3.5f;
-	public float boundaryMaxSize = 3.5f;
+	public float boundaryMinSizeX = -3.5f;
+	public float boundaryMaxSizeX = 3.5f;
+	// y 추가
+	public float boundaryMinSizeY = -10f;
+	public float boundaryMaxSizeY = 10f;
+
 	// Update is called once per frame
 
 	public GameObject gameOverMessage;
@@ -18,15 +23,24 @@ public class Player : MonoBehaviour
 		// ex) Horizontal : X축, Vertical : Y축
 
 		float x = Input.GetAxis("Horizontal");
-		transform.Translate(new Vector3(x, 0) * Time.deltaTime * moveSpeed);
+		float y = Input.GetAxis("Vertical");
+		transform.Translate(new Vector3(x, y) * Time.deltaTime * moveSpeed);
 
-		if (transform.position.x < boundaryMinSize)
+		if (transform.position.x < boundaryMinSizeX)
 		{
-			transform.position = new Vector3(boundaryMinSize, transform.position.y);
+			transform.position = new Vector3(boundaryMinSizeX, transform.position.y);
 		}
-		else if (transform.position.x > boundaryMaxSize)
+		else if (transform.position.x > boundaryMaxSizeX)
 		{
-			transform.position = new Vector3(boundaryMaxSize, transform.position.y);
+			transform.position = new Vector3(boundaryMaxSizeX, transform.position.y);
+		}
+		if (transform.position.y < boundaryMinSizeY)
+		{
+			transform.position = new Vector3(transform.position.x, boundaryMinSizeY);
+		}
+		else if (transform.position.y > boundaryMaxSizeY)
+		{
+			transform.position = new Vector3(transform.position.x, boundaryMaxSizeY);
 		}
 	}
 
@@ -41,6 +55,16 @@ public class Player : MonoBehaviour
 
 	public void GameOver()
 	{
+		//bool isFinded = gameOverMessage.TryGetComponent<Text>(out Text t);
+		//if (isFinded)
+		//{
+		//	print($"찾음");
+
+		//	// 스코어 출력 기능 넣어보고 싶은데 안되네..
+		//	//t = gameOverMessage.GetComponent<TextMeshProUGUI>();
+		//	//t.text = $"Game Over\nScore : {Time.time}";
+		//}
+
 		gameOverMessage.SetActive(true);
 		Time.timeScale = 0f;
 	}
