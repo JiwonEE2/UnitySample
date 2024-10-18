@@ -48,7 +48,8 @@ public class BuiltinClassesTest : MonoBehaviour
 
 		//Random : 난수를 생성하는 클래스. 시스템에도 있기 때문에 위에 유니티엔진을 사용하겠다 선언 후 사용하면 모호함의 문제가 해결된다.
 		int intRandom = Random.Range(-1, 1);                      // -1, 0
-																															// float를 반환하는 Range함수는 최대값과 간주되는 값이 반환될 수도 있다
+
+		// float를 반환하는 Range함수는 최대값과 간주되는 값이 반환될 수도 있다
 		float floatRandom = Random.Range(-1f, 1f);                //-1.00.....1 ~ 0. 999...99 : 1이 올 수도 있다
 		float randomValue = Random.value;                         // == Random.Range(0f, 1f); : 백분율을 얻기 편함
 		Vector3 randomPosition = Random.insideUnitSphere * 5f;    //Vector3(-1~1, -1~1, -1~1); : 랜덤한 위치를 뽑고 싶을 때 효율적
