@@ -34,7 +34,7 @@ public class UnityAttributeTest : MonoBehaviour
 	[Tooltip("이것은 툴팁입니다.")]
 	public string otherText;
 
-	// 7. HideInspector : 외부 객체에서 접근은 가능하나 Inspector에서 값을 가려야 할 때 사용
+	// 7. HideInInspector : 외부 객체에서 접근은 가능하나 Inspector에서 값을 가려야 할 때 사용
 	// 주의 : Debug모드에서도 값을 볼 수 없음
 	[HideInInspector]
 	public int publicIntVar;
