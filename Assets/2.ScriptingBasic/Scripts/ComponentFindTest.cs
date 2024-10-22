@@ -35,6 +35,6 @@ public class ComponentFindTest : MonoBehaviour
 		newFindMe.message = "다시 나를 찾으셨군요";
 
 		// Destroy 함수를 통해 게임 오브젝트가 아닌 컴포넌트 만을 삭제할 수도 있다
-		Destroy(findMe.gameObject, 2f);
+		//Destroy(findMe.gameObject, 2f);
 	}
 }
