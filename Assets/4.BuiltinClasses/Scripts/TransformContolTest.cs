@@ -54,7 +54,7 @@ public class TransformContolTest : MonoBehaviour
 		transform.Rotate(30, 0, 0);
 
 		// Translate, Rotate 함수를 사용하여 제어하는 것은
-		// transform.posion, rotation 에 값을 직접 할당하는 것과 달리 현재 psition, rotation 기준으로 상대적인 연산이 이루어진다.
+		// transform.position, rotation 에 값을 직접 할당하는 것과 달리 현재 position, rotation 기준으로 상대적인 연산이 이루어진다.
 	}
 
 	private void Update()

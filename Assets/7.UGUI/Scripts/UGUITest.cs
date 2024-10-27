@@ -15,6 +15,5 @@ public class UGUITest : MonoBehaviour
 		image.color = Color.black;
 		text.text = "Hello UGUI";
 		tmpugui.text = "Hello TMP";
-
 	}
 }
