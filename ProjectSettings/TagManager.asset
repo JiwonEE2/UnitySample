@@ -19,9 +19,9 @@ TagManager:
   - CameraPassthrough
   - FirstCamOnly
   - Minimap Icon
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Box
   - 
   - 
   - 
