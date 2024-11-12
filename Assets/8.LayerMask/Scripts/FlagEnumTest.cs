@@ -12,10 +12,11 @@ public enum State
 	Die
 }
 
-[Flags] // Enum 앞에 Flags Attribute를 추가할 경우
-				// 해당 Enum은 중복 선택이 가능한 Bit Select 형태로 사용 가능
-				// 주의 : Flag Attribute 가 부착된 Enum의 각 항목의 값은
-				// 1에 한 번만 비트 연산한 값이 아닐 경우 정상 작동하지 않음
+[Flags]
+// Enum 앞에 Flags Attribute를 추가할 경우
+// 해당 Enum은 중복 선택이 가능한 Bit Select 형태로 사용 가능
+// 주의 : Flag Attribute 가 부착된 Enum의 각 항목의 값은
+// 1에 한 번만 비트 연산한 값이 아닐 경우 정상 작동하지 않음
 public enum Debuff
 {
 	None = 0,
