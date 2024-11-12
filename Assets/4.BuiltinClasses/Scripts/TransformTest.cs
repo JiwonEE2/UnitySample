@@ -21,6 +21,5 @@ public class TransformTest : MonoBehaviour
 
 		parent.SetParent(grandParent, false);
 		//parent.parent = grandParent;		// 위와 똑같이 동작하나 일반적으로 SetParent 함수를 호출
-
 	}
 }
