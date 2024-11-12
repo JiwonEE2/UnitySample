@@ -31,7 +31,7 @@ public class MessageMethodTest : MonoBehaviour
 		isInit = true;
 	}
 
-	int frameCount = 0;
+	//int frameCount = 0;
 	// 2. Update : 게임이 로드된 후 매 프레임마다 한 번씩 호출
 	private void Update()
 	{
