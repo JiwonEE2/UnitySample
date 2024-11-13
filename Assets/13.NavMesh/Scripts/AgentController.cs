@@ -8,6 +8,7 @@ public class AgentController : MonoBehaviour
 {
 	public Transform pointer;
 	private NavMeshAgent agent;
+	public bool isStop;
 
 	private void Awake()
 	{
@@ -18,5 +19,9 @@ public class AgentController : MonoBehaviour
 	{
 		// AI에게 특정 지점으로 이동하도록 하는 함수
 		agent.SetDestination(pointer.position);
+		if (isStop)
+		{
+			agent.isStopped = isStop;
+		}
 	}
 }
