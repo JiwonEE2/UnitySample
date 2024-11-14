@@ -8,15 +8,9 @@ public class PlayerLook : MonoBehaviour
 	public float mouseSensivity;
 	private float rigAngle = 0f;
 
-	private void Start()
-	{
-		// 마우스 락
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
-	}
-
 	private void Update()
 	{
+		//if(SimpleMouseControl.isFocusing == false)
 		float mouseX = Input.GetAxis("Mouse X");  // mouse가 움직인 delta
 		float mouseY = Input.GetAxis("Mouse Y");
 
