@@ -40,5 +40,10 @@ public class PlayerMove : MonoBehaviour
 		Vector3 inputMoveDir = inputValue * currentSpeed;
 		Vector3 actualMoveDir = transform.TransformDirection(inputMoveDir);
 		charCtrl.Move(actualMoveDir * Time.deltaTime);
+
+		animator.SetFloat("Xdir", inputValue.x);
+		animator.SetFloat("Ydir", inputValue.z);
+
+		animator.SetFloat("Speed", inputValue.magnitude + runValue);
 	}
 }
