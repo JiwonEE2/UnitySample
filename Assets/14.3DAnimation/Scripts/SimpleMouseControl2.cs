@@ -6,9 +6,7 @@ public class SimpleMouseControl2 : MonoBehaviour
 {
 	private void Start()
 	{
-		// 마우스 락
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		OnApplicationFocus(true);
 	}
 
 	private void Update()
@@ -31,7 +29,8 @@ public class SimpleMouseControl2 : MonoBehaviour
 		}
 		else
 		{
-			//Cursor.lockState=
+			Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = true;
 		}
 	}
 }
