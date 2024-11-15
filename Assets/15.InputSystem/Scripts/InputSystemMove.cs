@@ -20,6 +20,12 @@ public class InputSystemMove : MonoBehaviour
 		animator = GetComponent<Animator>();
 	}
 
+	public void OnMoveEvent(InputAction.CallbackContext context)
+	{
+		print($"OnMoveEvent »£√‚. context : {context.ReadValue<Vector2>()}");
+		inputValue = context.ReadValue<Vector2>();
+	}
+
 	private void OnMove(InputValue value)
 	{
 		inputValue = value.Get<Vector2>();

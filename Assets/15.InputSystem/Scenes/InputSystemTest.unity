@@ -67075,7 +67075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 3aa143d3388121b4eafb992e39dd1f14, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -67088,9 +67088,29 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1446370063}
+        m_TargetAssemblyTypeName: InputSystemMove, Assembly-CSharp
+        m_MethodName: OnMoveEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fade57cc-c291-4d38-be61-ef1f76ed9a43
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2a1d1962-4d09-4c29-a9c7-29494bed0453
+    m_ActionName: Player/Look[/Mouse/delta]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2076f1c4-b66c-4259-b031-fc84e84d6086
+    m_ActionName: Player/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -67136,6 +67156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e929b5b5d032c8040a19acd57d2bd1af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reloadClip: {fileID: -203655887218126122, guid: 007752f2bb735e249a85612785e46f3b, type: 3}
 --- !u!1001 &1448755684
 PrefabInstance:
   m_ObjectHideFlags: 0
