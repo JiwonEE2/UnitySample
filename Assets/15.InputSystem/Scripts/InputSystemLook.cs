@@ -10,6 +10,27 @@ public class InputSystemLook : MonoBehaviour
 	public float mouseSensitivity;
 	private float rigAngle = 0f;
 
+	public InputActionAsset controlDefine;
+	InputAction lookAction;
+
+	private void Awake()
+	{
+		controlDefine = GetComponent<PlayerInput>().actions;
+		lookAction = controlDefine.FindAction("Look");
+	}
+
+	private void OnEnable()
+	{
+		lookAction.performed += OnLookEvent;
+		lookAction.canceled += OnLookEvent;
+	}
+
+	private void OnDisable()
+	{
+		lookAction.performed -= OnLookEvent;
+		lookAction.canceled -= OnLookEvent;
+	}
+
 	public void OnLookEvent(Context context)
 	{
 		if (SimpleMouseControl2.isFocusing) return;

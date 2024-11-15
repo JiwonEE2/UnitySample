@@ -67169,6 +67169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraRig: {fileID: 1497117624}
   mouseSensitivity: 36
+  controlDefine: {fileID: 0}
 --- !u!114 &1446370065
 MonoBehaviour:
   m_ObjectHideFlags: 0

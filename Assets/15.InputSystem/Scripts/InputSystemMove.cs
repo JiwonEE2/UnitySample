@@ -17,11 +17,28 @@ public class InputSystemMove : MonoBehaviour
 
 	public InputActionAsset controlDefine;
 
+	InputAction moveAction;
+
 	private void Awake()
 	{
 		charCtrl = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
 		controlDefine = GetComponent<PlayerInput>().actions;
+		moveAction = controlDefine.FindAction("Move");
+	}
+
+	// 이벤트 등록을 위함
+	private void OnEnable()
+	{
+		// moveAction.started -> XXDown
+		moveAction.performed += OnMoveEvent;  // XX
+		moveAction.canceled += OnMoveEvent;   // -> XXUp
+	}
+
+	private void OnDisable()
+	{
+		moveAction.performed -= OnMoveEvent;
+		moveAction.canceled -= OnMoveEvent;
 	}
 
 	public void OnMoveEvent(Context context)
