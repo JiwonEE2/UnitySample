@@ -18,5 +18,7 @@ public class InputSystemLook : MonoBehaviour
 		Vector2 mouseDelta = value.Get<Vector2>();
 		transform.Rotate(0, mouseDelta.x * mouseSensitivity * Time.deltaTime, 0);
 		rigAngle -= mouseDelta.y * mouseSensitivity * Time.deltaTime;
+		rigAngle = Mathf.Clamp(rigAngle, -90f, 90f);
+		cameraRig.localEulerAngles = new Vector3(rigAngle, 0, 0);
 	}
 }
