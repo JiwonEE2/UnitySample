@@ -13,7 +13,11 @@ public class SimpleMouseControl2 : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			isFocusing = false;
+			OnApplicationFocus(false);
+		}
+		else if (Input.anyKeyDown)
+		{
+			OnApplicationFocus(true);
 		}
 	}
 

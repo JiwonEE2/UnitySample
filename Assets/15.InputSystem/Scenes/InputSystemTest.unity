@@ -67057,7 +67057,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1446370054}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51f5a612e705b444f83afad7bae748f8, type: 3}
   m_Name: 
@@ -67075,7 +67075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 3aa143d3388121b4eafb992e39dd1f14, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -67104,11 +67104,35 @@ MonoBehaviour:
     m_ActionId: fade57cc-c291-4d38-be61-ef1f76ed9a43
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1446370064}
+        m_TargetAssemblyTypeName: InputSystemLook, Assembly-CSharp
+        m_MethodName: OnLookEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2a1d1962-4d09-4c29-a9c7-29494bed0453
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1446370065}
+        m_TargetAssemblyTypeName: InputSystemAction, Assembly-CSharp
+        m_MethodName: OnReloadEvent
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2076f1c4-b66c-4259-b031-fc84e84d6086
     m_ActionName: Player/Reload[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
@@ -67130,6 +67154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   runSpeed: 0
+  controlDefine: {fileID: -944628639613478452, guid: 3aa143d3388121b4eafb992e39dd1f14, type: 3}
 --- !u!114 &1446370064
 MonoBehaviour:
   m_ObjectHideFlags: 0

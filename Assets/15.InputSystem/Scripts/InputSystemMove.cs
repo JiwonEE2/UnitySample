@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 [RequireComponent(typeof(CharacterController), typeof(Animator))]
 public class InputSystemMove : MonoBehaviour
@@ -14,13 +15,16 @@ public class InputSystemMove : MonoBehaviour
 
 	Vector2 inputValue;
 
+	public InputActionAsset controlDefine;
+
 	private void Awake()
 	{
 		charCtrl = GetComponent<CharacterController>();
 		animator = GetComponent<Animator>();
+		controlDefine = GetComponent<PlayerInput>().actions;
 	}
 
-	public void OnMoveEvent(InputAction.CallbackContext context)
+	public void OnMoveEvent(Context context)
 	{
 		print($"OnMoveEvent »£√‚. context : {context.ReadValue<Vector2>()}");
 		inputValue = context.ReadValue<Vector2>();

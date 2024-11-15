@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
+using Context = UnityEngine.InputSystem.InputAction.CallbackContext;
 
 [RequireComponent(typeof(Animator), typeof(RigBuilder))]
 public class InputSystemAction : MonoBehaviour
@@ -36,10 +37,35 @@ public class InputSystemAction : MonoBehaviour
 		}
 	}
 
+	public void OnReloadEvent(Context context)
+	{
+		if (isReloading) return;
+		if (context.performed)
+		//if (context.ReadValue<float>() == 0f)
+		// 이렇게 해도 된다.
+		{
+			rig.weight = 0f;
+			isReloading = true;
+			animator.SetTrigger("Reload");
+		}
+	}
+
+	public void OnReloadEnd()
+	{
+		print("OnReloadEnd Called by Animation Event");
+	}
+
 	private void OnReload(InputValue value)
 	{
 		print($"OnReload 호출. isPressed : {value.isPressed}{value.Get<Single>()}");
 		if (isReloading) return;
+		rig.weight = 0f;
+		isReloading = true;
+		animator.SetTrigger("Reload");
+	}
+
+	private void Reload()
+	{
 		rig.weight = 0f;
 		isReloading = true;
 		animator.SetTrigger("Reload");
