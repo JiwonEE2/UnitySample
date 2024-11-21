@@ -10,8 +10,8 @@ public class IsAs : MonoBehaviour
 		public static implicit operator GameObject(A a) => GameObject.Find("A");
 
 		// 연산자 오버로딩
-		public static object operator ==(A a, object b) { return true; }
-		public static object operator !=(A a, object b) { return true; }
+		//public static object operator ==(A a, object b) { return true; }
+		//public static object operator !=(A a, object b) { return true; }
 	}
 	class B : A { }
 
