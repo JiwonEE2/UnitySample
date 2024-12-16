@@ -40,11 +40,13 @@ public class Client : MonoBehaviour
 	{
 		connect.onClick.AddListener(ConnectButtonClick);
 		send.onClick.AddListener(() => SendSubmit(message.text));
+		// onEndEdit : enter키 입력 시 호출
 		message.onEndEdit.AddListener(SendSubmit);
 	}
 
 	private void Update()
 	{
+		// 출력하는 부분
 		if (log.Count > 0)
 		{
 			TextMeshProUGUI logText = Instantiate(textPrefab, textArea);
@@ -61,8 +63,10 @@ public class Client : MonoBehaviour
 			// ip 입력 란의 텍스트를 ip 주소로 파싱
 			IPAddress serverAddress = IPAddress.Parse(ip.text);
 			// 0~65535 까지의 번호를 사용. ushort로 사용하면 효율적이겠지만, C#에서 주로 쓰이는 정수 자료형이 int이므로 port 번호는 int로 취급
+			// 즉, port는 int기 때문에 캐스팅의 번거로움을 피하기 위해 바로 int로 파싱
 			int portNum = int.Parse(port.text);
 
+			// IPEndPoint : 도착 지점의 ip와 port로 destination을 설정하는 클래스
 			IPEndPoint endPoint = new IPEndPoint(serverAddress, portNum);
 
 			// 서버로 연결 시도
@@ -73,6 +77,7 @@ public class Client : MonoBehaviour
 
 			reader = new StreamReader(tcpClient.GetStream());
 			writer = new StreamWriter(tcpClient.GetStream());
+			// 자동으로 밀어넣기
 			writer.AutoFlush = true;
 
 			while (tcpClient.Connected)
@@ -81,11 +86,13 @@ public class Client : MonoBehaviour
 				log.Enqueue(receiveMessage);
 			}
 		}
+		// ApplicationException일 경우
 		catch (ApplicationException e)
 		{
 			log.Enqueue("어플리케이션 예외 발생");
 			log.Enqueue(e.Message);
 		}
+		// ApplicationException을 제외한 모든 Exception
 		catch (Exception e)
 		{
 			log.Enqueue("문제 발생");
@@ -94,8 +101,12 @@ public class Client : MonoBehaviour
 		// try 문 내의 구문이 실행이 됐건 exception에 의해 끊겼건 반드시 호출
 		finally
 		{
+			//reader = new StreamReader(tcpClient.GetStream());
+			//writer = new StreamWriter(tcpClient.GetStream());
+			// 위의 두 개 이후에 exception 발생하게 되면 아래처럼 닫아줘야 한다.
 			if (reader != null) reader.Close();
 			if (writer != null) writer.Close();
+			// 접속 끊기
 			clientThread.Abort();
 			isConnected = false;
 		}
@@ -103,15 +114,19 @@ public class Client : MonoBehaviour
 
 	private void ConnectButtonClick()
 	{
-		// 접속중이 아니면
+		// 접속 중이 아닐 경우
 		if (false == isConnected)
 		{
 			// 접속 시도
+			// 멀티쓰레딩. Action(delegate) 형태로 
 			clientThread = new Thread(ClientThread);
+			// 백그라운드에서 동작
 			clientThread.IsBackground = true;
+			// 쓰레드 시작
 			clientThread.Start();
 			isConnected = true;
 		}
+		// 접속 중일 경우
 		else
 		{
 			// 접속 해제

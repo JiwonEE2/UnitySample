@@ -37,9 +37,12 @@ public class Server : MonoBehaviour
 
 	private void Update()
 	{
+		// log에 메시지가 있으면
 		if (log.Count > 0)
 		{
+			// TMP로 생성하고
 			TextMeshProUGUI logText = Instantiate(textPrefab, textArea);
+			// log에서 삭제
 			logText.text = log.Dequeue();
 		}
 	}
@@ -71,6 +74,7 @@ public class Server : MonoBehaviour
 			{
 				// TCP client가 접속할 때까지 대기
 				// 이 리스너는 누군가 accept 할 때까지 대기
+				// 새로운 tcpClient가 내 ip로 와서 붙을 때까지 대기
 				TcpClient tcpClient = tcpListener.AcceptTcpClient();
 				ClientHandler handler = new ClientHandler();
 				handler.Connect(clientId++, this, tcpClient);
@@ -104,6 +108,7 @@ public class Server : MonoBehaviour
 
 	public void BroadcastToClients(string message)
 	{
+		// 메시지를 받으면 클라이언트들에게 뿌려주기도 할 건데, 서버에서도 한 번 확인하고 싶다
 		log.Enqueue(message);
 		foreach (ClientHandler client in clients)
 		{
@@ -123,7 +128,9 @@ public class ClientHandler
 
 	public void Connect(int id, Server server, TcpClient tcpClient)
 	{
-		this.id = id;
+		//this.id = id;
+		// id 안맞는 문제 해결을 위해 내가 임의로 수정함
+		this.id = id - 1;
 		this.server = server;
 		this.tcpClient = tcpClient;
 		reader = new StreamReader(tcpClient.GetStream());
@@ -155,17 +162,21 @@ public class ClientHandler
 			while (tcpClient.Connected)
 			{
 				string receiveMessage = reader.ReadLine();
+				// 유효성 검사
 				if (string.IsNullOrEmpty(receiveMessage))
 				{
+					// 아무 것도 하지 않기
 					continue;
 				}
-				// 유효한 메시지를 받음
+				// 유효한 메시지를 받음 (continue로 빠지지 않음)
 				server.BroadcastToClients($"{id}님의 말: {receiveMessage}");
 			}
 		}
 		finally
 		{
 			Server.log.Enqueue($"{id}번 클라이언트 연결 종료");
+			// Server에서 호출하기 때문에 여기서 또 호출할 필요 없다.
+			//Disconnect();
 		}
 	}
 }
