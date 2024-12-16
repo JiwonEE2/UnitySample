@@ -130,7 +130,7 @@ public class ClientHandler
 	{
 		//this.id = id;
 		// id 안맞는 문제 해결을 위해 내가 임의로 수정함
-		this.id = id - 1;
+		this.id = id + 1;
 		this.server = server;
 		this.tcpClient = tcpClient;
 		reader = new StreamReader(tcpClient.GetStream());
