@@ -28,7 +28,7 @@ public class Server : MonoBehaviour
 
 	private List<ClientHandler> clients = new List<ClientHandler>();
 
-	private static Queue<string> log = new Queue<string>();
+	public static Queue<string> log = new Queue<string>();
 
 	private void Awake()
 	{
@@ -62,20 +62,37 @@ public class Server : MonoBehaviour
 
 	private void ServerThread()
 	{
-		TcpListener tcpListener = new TcpListener(IPAddress.Parse(ipAddress), port);
-		tcpListener.Start();
-		log.Enqueue("서버 시작");
-		while (true)
+		try
 		{
-			// TCP client가 접속할 때까지 대기
-			// 이 리스너는 누군가 accept 할 때까지 대기
-			TcpClient tcpClient = tcpListener.AcceptTcpClient();
-			ClientHandler handler = new ClientHandler();
-			handler.Connect(clientId++, this, tcpClient);
-			clients.Add(handler);
-			// 아래는 오류. Main Thread 에서만 호출될 수 있다.
-			//Instantiate(textPrefab, textArea).text = $"{clientId}번 클라이언트가 접속됨";
-			log.Enqueue($"{clientId}번 클라이언트가 접속됨");
+			TcpListener tcpListener = new TcpListener(IPAddress.Parse(ipAddress), port);
+			tcpListener.Start();
+			log.Enqueue("서버 시작");
+			while (true)
+			{
+				// TCP client가 접속할 때까지 대기
+				// 이 리스너는 누군가 accept 할 때까지 대기
+				TcpClient tcpClient = tcpListener.AcceptTcpClient();
+				ClientHandler handler = new ClientHandler();
+				handler.Connect(clientId++, this, tcpClient);
+				clients.Add(handler);
+				// 아래는 오류. Main Thread 에서만 호출될 수 있다.
+				//Instantiate(textPrefab, textArea).text = $"{clientId}번 클라이언트가 접속됨";
+				log.Enqueue($"{clientId}번 클라이언트가 접속됨");
+			}
+		}
+		catch
+		{
+			// 예외처리 해보기
+			log.Enqueue("무슨 일?");
+		}
+		finally
+		{
+			foreach (ClientHandler client in clients)
+			{
+				client.Disconnect();
+			}
+			serverMainThread.Abort();
+			isConnected = false;
 		}
 	}
 
@@ -133,15 +150,22 @@ public class ClientHandler
 
 	public void Run()
 	{
-		while (tcpClient.Connected)
+		try
 		{
-			string receiveMessage = reader.ReadLine();
-			if (string.IsNullOrEmpty(receiveMessage))
+			while (tcpClient.Connected)
 			{
-				continue;
+				string receiveMessage = reader.ReadLine();
+				if (string.IsNullOrEmpty(receiveMessage))
+				{
+					continue;
+				}
+				// 유효한 메시지를 받음
+				server.BroadcastToClients($"{id}님의 말: {receiveMessage}");
 			}
-			// 유효한 메시지를 받음
-			server.BroadcastToClients($"{id}님의 말: {receiveMessage}");
+		}
+		finally
+		{
+			Server.log.Enqueue($"{id}번 클라이언트 연결 종료");
 		}
 	}
 }
