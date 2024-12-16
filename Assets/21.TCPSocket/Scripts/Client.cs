@@ -1,8 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+// StreamReader, StreamWriter 사용을 위함
 using System.IO;
+// IPAddress, IPEndPoint 사용을 위함
 using System.Net;
+// TcpClient 사용을 위함
 using System.Net.Sockets;
+// Thread 사용을 위함
 using System.Threading;
 using TMPro;
 using UnityEngine;
@@ -29,11 +33,22 @@ public class Client : MonoBehaviour
 
 	private bool isConnected;
 
+	public static Queue<string> log = new Queue<string>();
+
 	private void Awake()
 	{
 		connect.onClick.AddListener(ConnectButtonClick);
 		send.onClick.AddListener(() => SendSubmit(message.text));
 		message.onEndEdit.AddListener(SendSubmit);
+	}
+
+	private void Update()
+	{
+		if (log.Count > 0)
+		{
+			TextMeshProUGUI logText = Instantiate(textPrefab, textArea);
+			logText.text = log.Dequeue();
+		}
 	}
 
 	private void ClientThread()
@@ -51,7 +66,7 @@ public class Client : MonoBehaviour
 		tcpClient.Connect(endPoint);
 
 		// 여기까지 코드가 실행되었으면 서버 접속 성공
-		print("서버 접속 성공");
+		log.Enqueue("서버 접속 성공");
 
 		reader = new StreamReader(tcpClient.GetStream());
 		writer = new StreamWriter(tcpClient.GetStream());
@@ -60,7 +75,7 @@ public class Client : MonoBehaviour
 		while (tcpClient.Connected)
 		{
 			string receiveMessage = reader.ReadLine();
-			print($"메시지 받음:{receiveMessage}");
+			log.Enqueue(receiveMessage);
 		}
 	}
 
