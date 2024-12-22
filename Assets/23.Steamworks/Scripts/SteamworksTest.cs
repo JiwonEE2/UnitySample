@@ -1,4 +1,4 @@
-using Steamworks;
+ï»¿using Steamworks;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,26 +14,26 @@ public class SteamworksTest : MonoBehaviour
 
 	private async void Start()
 	{
-		// ½ºÆÀ Å¬¶óÀÌ¾ğÆ® ÃÊ±âÈ­
-		// ½ºÆÀ¿¡¼­ °³¹ßÀÚ¿¡°Ô Á¦°øÇÏ´Â Å×½ºÆ® ¾Û ID : 480 (Spacewar)
+		// ìŠ¤íŒ€ í´ë¼ì´ì–¸íŠ¸ ì´ˆê¸°í™”
+		// ìŠ¤íŒ€ì—ì„œ ê°œë°œìì—ê²Œ ì œê³µí•˜ëŠ” í…ŒìŠ¤íŠ¸ ì•± ID : 480 (Spacewar)
 		SteamClient.Init(480);
 
 		print(SteamClient.Name);
 
-		// ³» ÃÊ»óÈ­ °¡Á®¿À±â
+		// ë‚´ ì´ˆìƒí™” ê°€ì ¸ì˜¤ê¸°
 		SteamImage? myAvatar = await SteamFriends.GetLargeAvatarAsync(SteamClient.SteamId);
 
 		UnityImage myAvaterImage = Instantiate(imagePrefab, transform);
 
 		if (myAvatar.HasValue)
 		{
-			// UI¿¡ »ı¼ºµÈ ImageÀÇ Source image¸¦ °¡Á®¿Â ³» ÃÊ»óÈ­·Î ±³Ã¼
+			// UIì— ìƒì„±ëœ Imageì˜ Source imageë¥¼ ê°€ì ¸ì˜¨ ë‚´ ì´ˆìƒí™”ë¡œ êµì²´
 			myAvaterImage.sprite = SteamImageToSprite(myAvatar.Value);
 		}
 
 		foreach (Friend friend in SteamFriends.GetFriends())
 		{
-			// foreach¹® µ¹¸é¼­ Ä£±¸ ÃÊ»óÈ­ Âï±â
+			// foreachë¬¸ ëŒë©´ì„œ ì¹œêµ¬ ì´ˆìƒí™” ì°ê¸°
 			SteamImage? friendAvatar = await SteamFriends.GetLargeAvatarAsync(friend.Id);
 			UnityImage friendAvatarImage = Instantiate(imagePrefab, transform);
 			if (friendAvatar.HasValue)
@@ -45,19 +45,19 @@ public class SteamworksTest : MonoBehaviour
 
 	private void OnApplicationQuit()
 	{
-		// ¾ÛÀÌ Á¾·áµÉ ¶§ ½ºÆÀ Å¬¶óÀÌ¾ğÆ® ¾Ûµµ ´İÀ½.
+		// ì•±ì´ ì¢…ë£Œë  ë•Œ ìŠ¤íŒ€ í´ë¼ì´ì–¸íŠ¸ ì•±ë„ ë‹«ìŒ.
 		SteamClient.Shutdown();
 	}
 
-	// ÀÌ¹ÌÁö º¯È¯ ¸Ş¼Òµå
+	// ì´ë¯¸ì§€ ë³€í™˜ ë©”ì†Œë“œ
 	public Sprite SteamImageToSprite(SteamImage image)
 	{
-		// Texture2D °´Ã¼ »ı¼º
+		// Texture2D ê°ì²´ ìƒì„±
 		Texture2D texture = new Texture2D((int)image.Width, (int)image.Height, TextureFormat.ARGB32, false);
 
 		texture.filterMode = FilterMode.Trilinear;
 
-		// steam image¿Í unity sprite ÅØ½ºÃÄÀÇ ÇÈ¼¿ Ç¥½Ã ¼ø¼­°¡ ´Ş¶ó¼­ ¹İÀü ÇÊ¿ä
+		// steam imageì™€ unity sprite í…ìŠ¤ì³ì˜ í”½ì…€ í‘œì‹œ ìˆœì„œê°€ ë‹¬ë¼ì„œ ë°˜ì „ í•„ìš”
 		for (int x = 0; x < image.Width; x++)
 		{
 			for (int y = 0; y < image.Height; y++)
